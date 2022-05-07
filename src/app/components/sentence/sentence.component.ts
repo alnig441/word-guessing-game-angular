@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-sentence',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SentenceComponent implements OnInit {
 
-  constructor() { }
+  sentence: string = '';
+
+  constructor(
+    private api: ApiService
+  ) { }
 
   ngOnInit(): void {
+    this.api.onUpdatedSentence.subscribe(value => this.sentence = value);
   }
+
+
 
 }

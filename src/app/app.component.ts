@@ -14,12 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private api: ApiService){}
 
   ngOnInit() {
-
-    this.api.getStudents()
-    // const response = await fetch('https://api.hatchways.io/assessment/students')
-    // const data = await response.json()
-    // const population = data.students;
-    // console.log(population)
+    this.api.get(1);
   }
 
 }
