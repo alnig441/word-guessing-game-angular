@@ -10,7 +10,7 @@ export class ApiService {
 
   private URL: string = 'https://api.hatchways.io/assessment/sentences';
   private sentenceSubject = new BehaviorSubject('');
-  onUpdatedSentence = this.sentenceSubject.asObservable();
+  originalSentence$ = this.sentenceSubject.asObservable();
 
   constructor(
   ) {}

@@ -15,7 +15,7 @@ export class SentenceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.api.onUpdatedSentence.subscribe(value => this.sentence = value);
+    this.api.originalSentence$.subscribe(value => this.sentence = value);
   }
 
 
