@@ -7,7 +7,6 @@ import { ApiService } from './api.service';
 )
 export class GameService {
 
-  scrambledSentence$: string = 'scrambled sentence here';
   private counterSubject = new BehaviorSubject(1);
   counter$ = this.counterSubject.asObservable();
 
@@ -20,7 +19,7 @@ export class GameService {
     return splitWords(words);
   }
 
-  next(counter: number) : void {
+  next() : void {
     let currentValue = this.counterSubject.value;
     if(currentValue < 10) {
       this.counterSubject.next(currentValue + 1)
