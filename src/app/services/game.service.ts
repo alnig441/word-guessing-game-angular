@@ -20,9 +20,11 @@ export class GameService {
     return splitWords(words);
   }
 
-  setCounter(counter: number) : void {
-    console.log('counter here: ',counter)
-    this.counterSubject.next(counter)
+  next(counter: number) : void {
+    let currentValue = this.counterSubject.value;
+    if(currentValue < 10) {
+      this.counterSubject.next(currentValue + 1)
+    }
     return
   }
 

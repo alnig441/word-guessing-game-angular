@@ -28,7 +28,7 @@ export class SentenceComponent implements OnInit {
 
 
     setTimeout(() => {
-      this.game.setCounter(3)
+      this.game.next(3)
     }, 3000);
   }
 
