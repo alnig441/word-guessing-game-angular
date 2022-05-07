@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-sentence',
@@ -9,15 +10,23 @@ import { ApiService } from '../../services/api.service';
 export class SentenceComponent implements OnInit {
 
   sentence: string = '';
+  scrambledSentence: string = 'scrambled sentence here';
 
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private game: GameService
   ) { }
 
   ngOnInit(): void {
-    this.api.originalSentence$.subscribe(value => this.sentence = value);
+    this.api.originalSentence$.subscribe(
+      value => {
+        this.sentence = value
+        this.scrambledSentence = this.game.scrambleWords(value)
+      });
   }
 
+  scrambler(sentence: string) : void {
 
+  }
 
 }
