@@ -26,10 +26,6 @@ export class SentenceComponent implements OnInit {
 
     this.game.counter$.subscribe(value => this.api.get(value))
 
-
-    setTimeout(() => {
-      this.game.next()
-    }, 3000);
   }
 
 
