@@ -10,6 +10,9 @@ export class GameService {
   private counterSubject = new BehaviorSubject(1);
   counter$ = this.counterSubject.asObservable();
 
+  private scoreSubject = new BehaviorSubject(0);
+  score$ = this.scoreSubject.asObservable();
+
   constructor(
     private api: ApiService,
   ) { }
@@ -20,9 +23,12 @@ export class GameService {
   }
 
   next() : void {
-    let currentValue = this.counterSubject.value;
-    if(currentValue < 10) {
-      this.counterSubject.next(currentValue + 1)
+    let currentCounter = this.counterSubject.value;
+    let currentScore = this.scoreSubject.value;
+
+    if(currentCounter < 10) {
+      this.counterSubject.next(currentCounter + 1)
+      this.scoreSubject.next(currentScore + 1)
     }
     return
   }
