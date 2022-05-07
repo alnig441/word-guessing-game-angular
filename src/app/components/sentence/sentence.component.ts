@@ -23,10 +23,14 @@ export class SentenceComponent implements OnInit {
         this.sentence = value
         this.scrambledSentence = this.game.scrambleWords(value)
       });
+
+    this.game.counter$.subscribe(value => this.api.get(value))
+
+
+    setTimeout(() => {
+      this.game.setCounter(3)
+    }, 3000);
   }
 
-  scrambler(sentence: string) : void {
-
-  }
 
 }

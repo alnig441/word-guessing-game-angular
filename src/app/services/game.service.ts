@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, throwError, of, BehaviorSubject, Subject, from } from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable(
@@ -7,6 +8,8 @@ import { ApiService } from './api.service';
 export class GameService {
 
   scrambledSentence$: string = 'scrambled sentence here';
+  private counterSubject = new BehaviorSubject(1);
+  counter$ = this.counterSubject.asObservable();
 
   constructor(
     private api: ApiService,
@@ -15,6 +18,12 @@ export class GameService {
   scrambleWords(sentence: string) : string {
     let words = sentence.split(' ');
     return splitWords(words);
+  }
+
+  setCounter(counter: number) : void {
+    console.log('counter here: ',counter)
+    this.counterSubject.next(counter)
+    return
   }
 
 }
