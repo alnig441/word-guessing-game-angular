@@ -11,6 +11,7 @@ import { InstructionsComponent } from './components/instructions/instructions.co
 import { ScoreComponent } from './components/score/score.component';
 import { SanitizeDirective } from './directives/sanitize.directive';
 import { PreventDefaultDirective } from './directives/prevent-default.directive';
+import { StopPropagationDirective } from './directives/stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PreventDefaultDirective } from './directives/prevent-default.directive'
     InstructionsComponent,
     ScoreComponent,
     SanitizeDirective,
-    PreventDefaultDirective
+    PreventDefaultDirective,
+    StopPropagationDirective
   ],
   imports: [
     BrowserModule,

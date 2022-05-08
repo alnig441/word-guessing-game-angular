@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, Directive } from '@angular/core';
 import { GameService } from '../../services/game.service';
 import { ApiService } from '../../services/api.service';
 import { PreventDefaultDirective } from '../../directives/prevent-default.directive';
+import { StopPropagationDirective } from '../../directives/stop-propagation.directive';
 
 @Component({
   selector: 'app-grid',
