@@ -11,6 +11,7 @@ import { InstructionsComponent } from './components/instructions/instructions.co
 import { ScoreComponent } from './components/score/score.component';
 import { PreventDefaultDirective } from './directives/prevent-default.directive';
 import { StopPropagationDirective } from './directives/stop-propagation.directive';
+import { CheckletterDirective } from './directives/checkletter.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StopPropagationDirective } from './directives/stop-propagation.directiv
     InstructionsComponent,
     ScoreComponent,
     PreventDefaultDirective,
-    StopPropagationDirective
+    StopPropagationDirective,
+    CheckletterDirective
   ],
   imports: [
     BrowserModule,
