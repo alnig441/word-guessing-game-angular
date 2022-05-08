@@ -9,6 +9,8 @@ import { GridComponent } from './components/grid/grid.component';
 import { SentenceComponent } from './components/sentence/sentence.component';
 import { InstructionsComponent } from './components/instructions/instructions.component';
 import { ScoreComponent } from './components/score/score.component';
+import { SanitizeDirective } from './directives/sanitize.directive';
+import { PreventDefaultDirective } from './directives/prevent-default.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { ScoreComponent } from './components/score/score.component';
     GridComponent,
     SentenceComponent,
     InstructionsComponent,
-    ScoreComponent
+    ScoreComponent,
+    SanitizeDirective,
+    PreventDefaultDirective
   ],
   imports: [
     BrowserModule,
