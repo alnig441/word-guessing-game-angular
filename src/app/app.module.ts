@@ -9,7 +9,6 @@ import { GridComponent } from './components/grid/grid.component';
 import { SentenceComponent } from './components/sentence/sentence.component';
 import { InstructionsComponent } from './components/instructions/instructions.component';
 import { ScoreComponent } from './components/score/score.component';
-import { SanitizeDirective } from './directives/sanitize.directive';
 import { PreventDefaultDirective } from './directives/prevent-default.directive';
 import { StopPropagationDirective } from './directives/stop-propagation.directive';
 
@@ -20,7 +19,6 @@ import { StopPropagationDirective } from './directives/stop-propagation.directiv
     SentenceComponent,
     InstructionsComponent,
     ScoreComponent,
-    SanitizeDirective,
     PreventDefaultDirective,
     StopPropagationDirective
   ],
