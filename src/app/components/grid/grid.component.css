@@ -1,0 +1,43 @@
+#grid {
+  padding: 5px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-item {
+  flex-basis: auto;
+  width: 100%;
+  margin: 5px;
+}
+
+input[type="submit"] {
+  color: white;
+  background-color: #388e3c;
+}
+
+input {
+  width: 100%;
+  text-align: center;
+  color: white;
+  margin: 0px;
+}
+
+input[type="submit"] {
+  width: auto;
+}
+
+input.space {
+  background-color: #ffb74d;
+}
+
+input.letter {
+  background-color:  #e1e1e1;
+}
+
+input:not(submit):focus {
+  outline: none;
+  color: black;
+}
