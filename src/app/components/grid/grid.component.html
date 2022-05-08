@@ -2,10 +2,10 @@
   <div class="flex-container" *ngFor="let word of sentence.split(' '), let i = index">
     <ng-container *ngFor="let letter of word.split(''), let j = index">
       <div class="flex-item">
-        <input id="letter-{{i}}-{{j}}" class="letter" type="text" data-value="{{letter}}" pattern="[a-zA-Z0-9]+" maxlength="1" appStopPropagation>
+        <input id="letter-{{i}}-{{j}}" class="letter" type="text"  pattern="[a-zA-Z0-9]+" maxlength="1" appStopPropagation appPreventDefault>
       </div>
       <div *ngIf="(j === word.length -1) && (i < sentence.split(' ').length -1)" class="flex-item">
-        <input id="space-{{i}}" class="space" type="text" data-value=" " pattern="[a-zA-Z0-9]+" maxlength="1" appStopPropagation>
+        <input id="space-{{i}}" class="space" type="text"  pattern="[a-zA-Z0-9]+" maxlength="1" appStopPropagation appPreventDefault>
       </div>
     </ng-container>
   </div>

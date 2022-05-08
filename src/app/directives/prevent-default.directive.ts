@@ -12,4 +12,9 @@ export class PreventDefaultDirective {
     btn.preventDefault();
   }
 
+  @HostListener('keydown.enter', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    event.preventDefault();
+  }
+
 }
