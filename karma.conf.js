@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/meltwater'),
+      dir: require('path').join(__dirname, './coverage/word-scrambler'),
       subdir: '.',
       reporters: [
         { type: 'html' },
