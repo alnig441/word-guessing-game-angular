@@ -84,5 +84,10 @@ function getNextId (id: any, letters : number, next : boolean ) {
     }
     i++;
   }
+
+  if(i === j && !next) {
+    nextId = inputs[i-1].attributes[attr].value;
+  }
+
   return nextId;
 }
