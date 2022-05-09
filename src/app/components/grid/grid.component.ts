@@ -11,7 +11,8 @@ import { StopPropagationDirective } from '../../directives/stop-propagation.dire
 })
 export class GridComponent implements OnInit {
   sentence : string = '';
-  challengeComplete : boolean = true;
+  challengeComplete : boolean = false;
+  private correctAnswers : number = 0;
   private inputs : any = document.getElementsByTagName('input');
 
   constructor(
@@ -27,17 +28,19 @@ export class GridComponent implements OnInit {
 
   @HostListener('click', ['$event'])
   onClick() {
+    this.challengeComplete = false;
     this.game.next()
   }
 
   onNewId(value: any) {
-    console.log('new id: ', value)
     let i : number = 0;
     let j : number = this.inputs.length -1;
     let attr: any = "id";
+    if(value.correct) this.correctAnswers ++;
+    this.challengeComplete = (this.correctAnswers === this.inputs.length);
 
     while(i < j) {
-      if(this.inputs[i].attributes[attr].value === value) {
+      if(this.inputs[i].attributes[attr].value === value.id) {
         this.inputs[i].focus();
         break;
       }

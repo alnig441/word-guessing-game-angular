@@ -11,42 +11,50 @@ export class CheckletterDirective {
     private api: ApiService
   ) { }
 
-  @Output() newIdEvent = new EventEmitter<string>();
+  @Output() newIdEvent = new EventEmitter<Object>();
 
   @HostListener('keyup', ['$event'])
   onKeyUp(e: any) {
+    let totalLetters : number = 0;
     let input = this.input.nativeElement;
     let word: number, letter : number ;
     let words : any = [];
     let id : string = this.input.nativeElement.attributes['id'].value;
-    let isSpace : boolean = (e.code === 'Space' && input.attributes['class'].value === 'space')
+    let isSpace : boolean = (e.code === 'Space' && input.attributes['class'].value === 'space');
+    let isCorrect : boolean = false;
+
+    this.api.originalSentence$.subscribe((value) => {
+      totalLetters = value.length - 1;
+      words = value.split(' ');
+    });
 
     if(id.length === 2) {
       word = parseInt(id[0]);
       letter = parseInt(id[1]);
-      this.api.originalSentence$.subscribe((value) => words = value.split(' '));
 
       if(words[word][letter].toLowerCase() === this.input.nativeElement.value) {
         input.setAttribute('disabled', true);
         input.setAttribute("style", "background-color:#4caf50")
+        isCorrect = true;
       }
     }
 
     if(isSpace) {
       input.setAttribute('disabled', true);
       input.setAttribute("style", "background-color:#4caf50")
+      isCorrect = true;
     }
 
-    this.newIdEvent.emit(getNextId(id));
+    this.newIdEvent.emit({ id: getNextId(id, totalLetters), correct: isCorrect });
 
   }
 
 }
 
-function getNextId (id: any) {
-  let inputs = document.getElementsByTagName('input')
+function getNextId (id: any, letters : number) {
+  let inputs = document.getElementsByTagName('input');
   let i : number = 0;
-  let j : number = inputs.length -1;
+  let j : number = letters;
   let nextId : string = '';
   let attr : any = 'id';
 
