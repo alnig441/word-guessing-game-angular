@@ -47,8 +47,6 @@ export class GridComponent implements OnInit {
   @HostListener('')
 
   onNewId(value: any) {
-    console.log('new id: ', value)
-
     let i : number = 0;
     let j : number = this.inputs.length;
     let attr: any = "id";

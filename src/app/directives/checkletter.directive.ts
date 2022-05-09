@@ -15,8 +15,6 @@ export class CheckletterDirective {
 
   @HostListener('keyup', ['$event'])
   onKeyUp(e: any) {
-    console.log('e ',e.key, e.code)
-
     let totalLetters : number = 0;
     let input = this.input.nativeElement;
     let word: number, letter : number ;
@@ -65,7 +63,6 @@ export class CheckletterDirective {
 }
 
 function getNextId (id: any, letters : number, next : boolean ) {
-  console.log('net next id: ', id, letters, next)
   let inputs = document.getElementsByTagName('input');
   let i : number = 0;
   let j : number = letters;
@@ -73,16 +70,12 @@ function getNextId (id: any, letters : number, next : boolean ) {
   let attr : any = 'id';
 
   while(i < j) {
-    console.log('rotating?')
     if(inputs[i].attributes[attr].value === id) {
-      console.log('get in there')
       if(next) {
-        console.log('not deleting')
         nextId = inputs[i+1].attributes[attr].value;
         break;
       }
       if(!next) {
-        console.log('deleting')
         if(i > 0) {
           nextId = inputs[i-1].attributes[attr].value;
         }
