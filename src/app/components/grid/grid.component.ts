@@ -30,6 +30,7 @@ export class GridComponent implements OnInit {
         this.inputs[0].focus()
 
         for(var i = 0, j = this.inputs.length -1 ; i < j ; i ++) {
+          this.currentInputWithFocus = 0;
           this.inputs[i].removeAttribute('disabled');
           this.inputs[i].value ="";
         }
@@ -50,6 +51,7 @@ export class GridComponent implements OnInit {
     if(this.challengeComplete) {
       this.challengeComplete = false;
       this.correctAnswers = 0;
+      console.log('focu:s', this.currentInputWithFocus)
       this.game.next()
     }
   }
