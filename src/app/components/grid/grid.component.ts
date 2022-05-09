@@ -3,6 +3,7 @@ import { GameService } from '../../services/game.service';
 import { ApiService } from '../../services/api.service';
 import { PreventDefaultDirective } from '../../directives/prevent-default.directive';
 import { StopPropagationDirective } from '../../directives/stop-propagation.directive';
+import { SetFocusDirective } from '../../directives/set-focus.directive';
 
 @Component({
   selector: 'app-grid',
@@ -51,7 +52,6 @@ export class GridComponent implements OnInit {
     if(this.challengeComplete) {
       this.challengeComplete = false;
       this.correctAnswers = 0;
-      console.log('focu:s', this.currentInputWithFocus)
       this.game.next()
     }
   }

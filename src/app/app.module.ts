@@ -12,6 +12,7 @@ import { ScoreComponent } from './components/score/score.component';
 import { PreventDefaultDirective } from './directives/prevent-default.directive';
 import { StopPropagationDirective } from './directives/stop-propagation.directive';
 import { CheckletterDirective } from './directives/checkletter.directive';
+import { SetFocusDirective } from './directives/set-focus.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CheckletterDirective } from './directives/checkletter.directive';
     ScoreComponent,
     PreventDefaultDirective,
     StopPropagationDirective,
-    CheckletterDirective
+    CheckletterDirective,
+    SetFocusDirective
   ],
   imports: [
     BrowserModule,
