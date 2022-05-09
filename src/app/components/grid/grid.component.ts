@@ -14,6 +14,7 @@ export class GridComponent implements OnInit {
   challengeComplete : boolean = false;
   private correctAnswers : number = 0;
   private inputs : any = document.getElementsByTagName('input');
+  private currentInputWithFocus : any ;
 
   constructor(
     private game : GameService,
@@ -46,12 +47,17 @@ export class GridComponent implements OnInit {
 
   @HostListener('window:keydown.enter', ['$event'])
   onEnter() {
-    console.log('enter entered')
     if(this.challengeComplete) {
       this.challengeComplete = false;
       this.correctAnswers = 0;
       this.game.next()
     }
+  }
+
+  @HostListener('window:click', ["$event"])
+  onWindowClick(e : any) {
+    if(!this.currentInputWithFocus) this.currentInputWithFocus = 0;
+    this.inputs[this.currentInputWithFocus].focus();
   }
 
   onNewId(value: any) {
@@ -73,6 +79,7 @@ export class GridComponent implements OnInit {
           this.inputs[i].value = '';
         }
         this.inputs[i].focus();
+        this.currentInputWithFocus = i;
         break;
       }
       i++;
