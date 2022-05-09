@@ -44,7 +44,15 @@ export class GridComponent implements OnInit {
     this.game.next()
   }
 
-  @HostListener('')
+  @HostListener('window:keydown.enter', ['$event'])
+  onEnter() {
+    console.log('enter entered')
+    if(this.challengeComplete) {
+      this.challengeComplete = false;
+      this.correctAnswers = 0;
+      this.game.next()
+    }
+  }
 
   onNewId(value: any) {
     let i : number = 0;
