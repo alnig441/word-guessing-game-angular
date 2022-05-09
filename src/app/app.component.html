@@ -1,4 +1,9 @@
-<app-sentence></app-sentence>
-<app-instructions></app-instructions>
-<app-score></app-score>
-<app-grid></app-grid>
+<ng-container *ngIf="gameComplete">
+  <p>YOU WIN!</p>
+</ng-container>
+<ng-container *ngIf="!gameComplete">
+  <app-sentence></app-sentence>
+  <app-instructions></app-instructions>
+  <app-score></app-score>
+  <app-grid></app-grid>
+</ng-container>

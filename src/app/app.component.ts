@@ -10,11 +10,16 @@ import { GameService } from './services/game.service'
 })
 export class AppComponent implements OnInit {
   title = 'meltwater';
+  gameComplete: boolean = false;
 
-  constructor(private api: ApiService){}
+  constructor(
+    private api: ApiService,
+    private game: GameService
+  ){}
 
   ngOnInit() {
-    this.api.get(1);
+    this.api.get(10);
+    this.game.complete$.subscribe(value => this.gameComplete = value)
   }
 
 }

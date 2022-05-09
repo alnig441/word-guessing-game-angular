@@ -7,11 +7,14 @@ import { ApiService } from './api.service';
 )
 export class GameService {
 
-  private counterSubject = new BehaviorSubject(1);
+  private counterSubject = new BehaviorSubject(10);
   counter$ = this.counterSubject.asObservable();
 
   private scoreSubject = new BehaviorSubject(0);
   score$ = this.scoreSubject.asObservable();
+
+  private completeSubject = new BehaviorSubject(false);
+  complete$ = this.completeSubject.asObservable();
 
   constructor(
     private api: ApiService,
@@ -29,6 +32,8 @@ export class GameService {
     if(currentCounter < 10) {
       this.counterSubject.next(currentCounter + 1)
       this.scoreSubject.next(currentScore + 1)
+    } else {
+      this.completeSubject.next(true);
     }
     return
   }
