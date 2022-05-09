@@ -1,4 +1,4 @@
-<form id="grid" autocomplete="off" appPreventDefault appStopPropagation >
+<form id="grid" autocomplete="off" appPreventDefault appStopPropagation>
   <div class="flex-container" *ngFor="let word of sentence.split(' '), let i = index">
     <ng-container *ngFor="let letter of word.split(''), let j = index">
       <div class="flex-item">
@@ -12,6 +12,6 @@
     </ng-container>
   </div>
   <div *ngIf="challengeComplete" class="flex-item">
-    <input type="submit" value="Next" appPreventDefault (click)="onClick()">
+    <input type="submit" value="Next"  (click)="onClick()">
   </div>
 </form>

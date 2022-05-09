@@ -25,6 +25,7 @@ export class GridComponent implements OnInit {
     this.api.originalSentence$.subscribe((value) =>{
       this.sentence = value
       if(this.inputs[0]) {
+
         this.inputs[0].focus()
 
         for(var i = 0, j = this.inputs.length -1 ; i < j ; i ++) {
@@ -34,7 +35,6 @@ export class GridComponent implements OnInit {
       }
 
     });
-
   }
 
   @HostListener('click', ['$event'])
@@ -44,14 +44,28 @@ export class GridComponent implements OnInit {
     this.game.next()
   }
 
+  @HostListener('')
+
   onNewId(value: any) {
+    console.log('new id: ', value)
+
     let i : number = 0;
     let j : number = this.inputs.length;
     let attr: any = "id";
+
     if(value.correct) this.correctAnswers ++;
+
     this.challengeComplete = (this.correctAnswers === this.inputs.length);
+
     while(i < j) {
       if(this.inputs[i].attributes[attr].value === value.id) {
+        if(value.delete) {
+          if(this.inputs[i].hasAttribute('disabled')) {
+            this.inputs[i].removeAttribute('disabled');
+            this.correctAnswers --;
+          }
+          this.inputs[i].value = '';
+        }
         this.inputs[i].focus();
         break;
       }
