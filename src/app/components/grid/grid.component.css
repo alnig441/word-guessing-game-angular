@@ -41,3 +41,7 @@ input:not(submit):focus {
   outline: none;
   color: black;
 }
+
+input[disabled] {
+  background-color:#4caf50;
+}

@@ -7,7 +7,7 @@ import { ApiService } from './api.service';
 )
 export class GameService {
 
-  private counterSubject = new BehaviorSubject(10);
+  private counterSubject = new BehaviorSubject(1);
   counter$ = this.counterSubject.asObservable();
 
   private scoreSubject = new BehaviorSubject(0);

@@ -21,6 +21,7 @@ export class CheckletterDirective {
     let words : any = [];
     let id : string = this.input.nativeElement.attributes['id'].value;
     let isSpace : boolean = (e.code === 'Space' && input.attributes['class'].value === 'space');
+    let isLetter : boolean = (input.attributes['class'].value === 'letter');
     let isCorrect : boolean = false;
 
     this.api.originalSentence$.subscribe((value) => {
@@ -28,20 +29,19 @@ export class CheckletterDirective {
       words = value.split(' ');
     });
 
-    if(id.length === 2) {
-      word = parseInt(id[0]);
-      letter = parseInt(id[1]);
+    if(isLetter) {
+      word = parseInt(id.slice(0,1));
+      letter = parseInt(id.slice(1));
 
       if(words[word][letter].toLowerCase() === this.input.nativeElement.value) {
         input.setAttribute('disabled', true);
-        input.setAttribute("style", "background-color:#4caf50")
         isCorrect = true;
       }
+
     }
 
     if(isSpace) {
       input.setAttribute('disabled', true);
-      input.setAttribute("style", "background-color:#4caf50")
       isCorrect = true;
     }
 

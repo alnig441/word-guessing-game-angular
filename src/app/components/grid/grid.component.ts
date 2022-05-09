@@ -22,23 +22,34 @@ export class GridComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.api.originalSentence$.subscribe(value => this.sentence = value);
+    this.api.originalSentence$.subscribe((value) =>{
+      this.sentence = value
+      if(this.inputs[0]) {
+        this.inputs[0].focus()
+
+        for(var i = 0, j = this.inputs.length -1 ; i < j ; i ++) {
+          this.inputs[i].removeAttribute('disabled');
+          this.inputs[i].value ="";
+        }
+      }
+
+    });
 
   }
 
   @HostListener('click', ['$event'])
   onClick() {
     this.challengeComplete = false;
+    this.correctAnswers = 0;
     this.game.next()
   }
 
   onNewId(value: any) {
     let i : number = 0;
-    let j : number = this.inputs.length -1;
+    let j : number = this.inputs.length;
     let attr: any = "id";
     if(value.correct) this.correctAnswers ++;
     this.challengeComplete = (this.correctAnswers === this.inputs.length);
-
     while(i < j) {
       if(this.inputs[i].attributes[attr].value === value.id) {
         this.inputs[i].focus();
