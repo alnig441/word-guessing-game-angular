@@ -19,38 +19,31 @@ export class ApiService {
     private http: HttpClient
   ) {}
 
-  async get(counter: number): Promise<any> {
-    try {
-      const response = await fetch(`${this.URL}/${counter}`)
-      const result = await response.json()
-      this.sentenceSubject.next(result.data.sentence);
-    } catch(error) {
-      console.log('error: ',error)
-    }
+  // async get(counter: number): Promise<any> {
+  //   try {
+  //     const response = await fetch(`${this.URL}/${counter}`)
+  //     const result = await response.json()
+  //     this.sentenceSubject.next(result.data.sentence);
+  //   } catch(error) {
+  //     console.log('error: ',error)
+  //   }
+  //
+  // }
 
-  }
+  get(counter: number): void {
+    let endPoint =`${this.URL}/${counter}`;
 
-  getAlternative(counter: number): void {
-    console.log('getting sentence: ', counter)
-    let endPoint = `${this.URL}/${counter}`;
-    this.testSentence$ = this.http.request('GET', endPoint, {responseType:'json'})
-      .pipe(
-        tap(
-          {
-          subscribe: () => {
-            this.subscribers ++;
-            console.log('total subscribers: ', this.subscribers)
-          },
-          next: (n : any) => console.log('next value: ', n)
-          }
-        )
+    this.http.request('GET', endPoint, { responseType: 'json' })
+      .subscribe(
+        (response: any) => {
+          this.sentenceSubject.next(response.data.sentence)
+        },
+        (error: any) => {
+          console.log('handle this error: ', error.status, error.error )
+        }
       )
-      .pipe(
-        connect(
-          shared$ =>
-            shared$.pipe(map(n => n.data.sentence)),
-        )
-      )
+
+    return;
   }
 
 
