@@ -1,9 +1,9 @@
-<ng-container *ngIf="gameComplete">
-  <p>YOU WIN!</p>
-</ng-container>
-<ng-container *ngIf="!gameComplete">
+<ng-container *ngIf="!gameComplete; else youWin">
   <app-sentence></app-sentence>
   <app-instructions></app-instructions>
   <app-score></app-score>
   <app-grid></app-grid>
 </ng-container>
+<ng-template #youWin>
+  <p>YOU WIN!</p>
+</ng-template>

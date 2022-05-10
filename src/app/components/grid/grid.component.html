@@ -2,10 +2,10 @@
   <div class="flex-container" *ngFor="let word of sentence.split(' '), let i = index">
     <ng-container *ngFor="let letter of word.split(''), let j = index">
       <div class="flex-item">
-        <ng-container *ngIf="(i === j && i === 0); else elseBlock">
+        <ng-container *ngIf="(i === j && i === 0); else notFocus">
           <input id="{{i}}{{j}}" setFocus class="letter" type="text" pattern="[a-zA-Z0-9]+" maxlength="1" stopPropagation preventDefault checkLetter (newIdEvent)='onNewId($event)'>
         </ng-container>
-        <ng-template #elseBlock>
+        <ng-template #notFocus>
           <input id="{{i}}{{j}}" class="letter" type="text" pattern="[a-zA-Z0-9]+" maxlength="1" stopPropagation preventDefault checkLetter (newIdEvent)='onNewId($event)'>
         </ng-template>
       </div>
