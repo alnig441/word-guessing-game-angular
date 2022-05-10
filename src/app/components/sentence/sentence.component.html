@@ -1,1 +1,6 @@
-<h1>{{this.scrambledSentence}}</h1>
+<ng-container *ngIf="errorMessage; else result">
+  <h1>{{errorMessage}}</h1>
+</ng-container>
+<ng-template #result>
+  <h1>{{this.scrambledSentence}}</h1>
+</ng-template>

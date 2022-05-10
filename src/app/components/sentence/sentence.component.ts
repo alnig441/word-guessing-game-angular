@@ -11,6 +11,7 @@ export class SentenceComponent implements OnInit {
 
   sentence: string = '';
   scrambledSentence: string = 'scrambled sentence here';
+  errorMessage: string = ''
 
   constructor(
     private api: ApiService,
@@ -23,6 +24,8 @@ export class SentenceComponent implements OnInit {
         this.sentence = value
         this.scrambledSentence = this.game.scrambleWords(value)
       });
+
+    this.api.error$.subscribe(value => this.errorMessage = value)
 
     this.game.counter$.subscribe(value => this.api.get(value))
 

@@ -12,6 +12,9 @@ export class ApiService {
   private sentenceSubject = new BehaviorSubject('');
   originalSentence$ = this.sentenceSubject.asObservable();
 
+  private errorSubject = new BehaviorSubject('');
+  error$ = this.errorSubject.asObservable();
+
   testSentence$ : Observable<any> = new Observable();
   private subscribers : number = 0;
 
@@ -39,7 +42,7 @@ export class ApiService {
           this.sentenceSubject.next(response.data.sentence)
         },
         (error: any) => {
-          console.log('handle this error: ', error.status, error.error )
+          this.errorSubject.next(error.error.error);
         }
       )
 
