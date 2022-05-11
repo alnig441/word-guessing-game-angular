@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this.api.get(0);
+    this.api.get(1);
     this.game.complete$.subscribe(value => this.gameComplete = value)
   }
 
