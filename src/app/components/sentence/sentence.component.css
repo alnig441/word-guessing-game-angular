@@ -1,3 +1,18 @@
 h1 {
   color: steelblue;
 }
+
+.error, .warning {
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.error {
+  background-color: #FF5252;
+  color: white;
+}
+
+.warning {
+  background-color: #FFC107;
+  color: white;
+}

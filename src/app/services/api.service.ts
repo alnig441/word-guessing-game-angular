@@ -12,7 +12,7 @@ export class ApiService {
   private sentenceSubject = new BehaviorSubject('');
   originalSentence$ = this.sentenceSubject.asObservable();
 
-  private errorSubject = new BehaviorSubject('');
+  private errorSubject = new Subject();
   error$ = this.errorSubject.asObservable();
 
   testSentence$ : Observable<any> = new Observable();
@@ -21,17 +21,6 @@ export class ApiService {
   constructor(
     private http: HttpClient
   ) {}
-
-  // async get(counter: number): Promise<any> {
-  //   try {
-  //     const response = await fetch(`${this.URL}/${counter}`)
-  //     const result = await response.json()
-  //     this.sentenceSubject.next(result.data.sentence);
-  //   } catch(error) {
-  //     console.log('error: ',error)
-  //   }
-  //
-  // }
 
   get(counter: number): void {
     let endPoint =`${this.URL}/${counter}`;
@@ -42,7 +31,7 @@ export class ApiService {
           this.sentenceSubject.next(response.data.sentence)
         },
         (error: any) => {
-          this.errorSubject.next(error.error.error);
+          this.errorSubject.next({ status: error.status, message: error.error.error})
         }
       )
 
