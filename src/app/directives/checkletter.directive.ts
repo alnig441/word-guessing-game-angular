@@ -20,21 +20,25 @@ export class CheckletterDirective {
     let word: number, letter : number ;
     let words : any = [];
     let id : string = this.input.nativeElement.attributes['id'].value;
-    let isSpace : boolean = (e.code === 'Space' && input.attributes['class'].value === 'space');
-    let isLetter : boolean = (input.attributes['class'].value === 'letter');
+    const isSpace : boolean = (e.code === 'Space' && input.attributes['class'].value === 'space');
+    const isLetter : boolean = (input.attributes['class'].value === 'letter');
     let isCorrect : boolean = false;
+    let finalInputId: string;
+    let isFinalInput: boolean = false;
 
     this.api.originalSentence$.subscribe((value) => {
       totalLetters = value.length - 1;
       words = value.split(' ');
+      finalInputId = `${words.length -1}${words[words.length -1].length -1}`;
+      isFinalInput = (finalInputId === id);
     });
 
     if(e.key.length === 1) {
-
       if(isLetter) {
         word = parseInt(id.slice(0,1));
         letter = parseInt(id.slice(1));
-        if(words[word][letter].toLowerCase() === this.input.nativeElement.value) {
+        if(words[word][letter].toLowerCase() === e.key.toLowerCase()) {
+          input.value = e.key;
           input.setAttribute('disabled', true);
           isCorrect = true;
         }
@@ -45,11 +49,11 @@ export class CheckletterDirective {
         isCorrect = true;
       }
 
-      this.newIdEvent.emit({ id: getNextId(id, totalLetters, true), correct: isCorrect });
+      this.newIdEvent.emit({ id: getNextId(id, totalLetters, true), correct: isCorrect, isFinalInput: isFinalInput });
     }
 
     if(e.code.toLowerCase() === 'backspace') {
-      this.newIdEvent.emit({ id: getNextId(id, totalLetters, false) , delete: true })
+      this.newIdEvent.emit({ id: getNextId(id, totalLetters, false) , delete: true, isFinalInput: isFinalInput })
     }
 
     if(e.code.toLowerCase() === 'tab') {
