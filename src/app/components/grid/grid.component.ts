@@ -64,14 +64,26 @@ export class GridComponent implements OnInit {
 
   onNewId(value: any) {
     let i : number = 0;
-    let j : number = this.inputs.length;
-    let attr: any = "id";
+    const j : number = this.inputs.length;
+    const attr: any = "id";
 
     if(value.correct) this.correctAnswers ++;
 
     this.challengeComplete = (this.correctAnswers === this.inputs.length);
 
+    if(!this.challengeComplete && value.isFinalInput) {
+      if(this.inputs[j-1].hasAttribute('disabled')) {
+        this.inputs[j-1].removeAttribute('disabled');
+        this.inputs[j-1].focus();
+        if(value.correct) {
+          this.correctAnswers --;
+        }
+      }
+    }
+
+
     while(i < j) {
+
       if(this.inputs[i].attributes[attr].value === value.id) {
         if(value.delete) {
           if(this.inputs[i].hasAttribute('disabled')) {
